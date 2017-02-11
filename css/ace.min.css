@@ -20,3 +20,8 @@
 .bug-summary {
     font-size: xx-large;
 }
+
+.bug-description {
+    padding: 4% 5px !important;
+    font-size: 19px;
+}
