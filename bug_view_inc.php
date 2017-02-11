@@ -325,6 +325,64 @@ if( $t_bottom_buttons_enabled ) {
 
 echo '<tbody>';
 
+#
+# Bug Details (screen wide fields)
+#
+
+# Summary
+if( $t_show_summary ) {
+    echo '<tr>';
+    echo '<th class="bug-summary category">', lang_get( 'summary' ), '</th>';
+    echo '<td class="bug-summary" colspan="5">', $t_summary, '</td>';
+    echo '</tr>';
+}
+
+# Description
+if( $t_show_description ) {
+    echo '<tr>';
+    echo '<th class="bug-description category">', lang_get( 'description' ), '</th>';
+    echo '<td class="bug-description" colspan="5">', $t_description, '</td>';
+    echo '</tr>';
+}
+
+# Steps to Reproduce
+if( $t_show_steps_to_reproduce ) {
+    echo '<tr>';
+    echo '<th class="bug-steps-to-reproduce category">', lang_get( 'steps_to_reproduce' ), '</th>';
+    echo '<td class="bug-steps-to-reproduce" colspan="5">', $t_steps_to_reproduce, '</td>';
+    echo '</tr>';
+}
+
+# Additional Information
+if( $t_show_additional_information ) {
+    echo '<tr>';
+    echo '<th class="bug-additional-information category">', lang_get( 'additional_information' ), '</th>';
+    echo '<td class="bug-additional-information" colspan="5">', $t_additional_information, '</td>';
+    echo '</tr>';
+}
+
+# Tagging
+if( $t_show_tags ) {
+    echo '<tr>';
+    echo '<th class="bug-tags category">', lang_get( 'tags' ), '</th>';
+    echo '<td class="bug-tags" colspan="5">';
+    tag_display_attached( $t_bug_id );
+    echo '</td></tr>';
+}
+
+# Attach Tags
+if( $t_can_attach_tag ) {
+    echo '<tr class="noprint">';
+    echo '<th class="bug-attach-tags category">', lang_get( 'tag_attach_long' ), '</th>';
+    echo '<td class="bug-attach-tags" colspan="5">';
+    print_tag_attach_form( $t_bug_id );
+    echo '</td></tr>';
+}
+
+# spacer
+echo '<tr class="spacer"><td colspan="6"></td></tr>';
+echo '<tr class="hidden"></tr>';
+
 if( $t_show_id || $t_show_project || $t_show_category || $t_show_view_state || $t_show_date_submitted || $t_show_last_updated ) {
 	# Labels
 	echo '<tr class="bug-header">';
@@ -641,63 +699,6 @@ event_signal( 'EVENT_VIEW_BUG_DETAILS', array( $t_bug_id ) );
 echo '<tr class="spacer"><td colspan="6"></td></tr>';
 echo '<tr class="hidden"></tr>';
 
-#
-# Bug Details (screen wide fields)
-#
-
-# Summary
-if( $t_show_summary ) {
-	echo '<tr>';
-	echo '<th class="bug-summary category">', lang_get( 'summary' ), '</th>';
-	echo '<td class="bug-summary" colspan="5">', $t_summary, '</td>';
-	echo '</tr>';
-}
-
-# Description
-if( $t_show_description ) {
-	echo '<tr>';
-	echo '<th class="bug-description category">', lang_get( 'description' ), '</th>';
-	echo '<td class="bug-description" colspan="5">', $t_description, '</td>';
-	echo '</tr>';
-}
-
-# Steps to Reproduce
-if( $t_show_steps_to_reproduce ) {
-	echo '<tr>';
-	echo '<th class="bug-steps-to-reproduce category">', lang_get( 'steps_to_reproduce' ), '</th>';
-	echo '<td class="bug-steps-to-reproduce" colspan="5">', $t_steps_to_reproduce, '</td>';
-	echo '</tr>';
-}
-
-# Additional Information
-if( $t_show_additional_information ) {
-	echo '<tr>';
-	echo '<th class="bug-additional-information category">', lang_get( 'additional_information' ), '</th>';
-	echo '<td class="bug-additional-information" colspan="5">', $t_additional_information, '</td>';
-	echo '</tr>';
-}
-
-# Tagging
-if( $t_show_tags ) {
-	echo '<tr>';
-	echo '<th class="bug-tags category">', lang_get( 'tags' ), '</th>';
-	echo '<td class="bug-tags" colspan="5">';
-	tag_display_attached( $t_bug_id );
-	echo '</td></tr>';
-}
-
-# Attach Tags
-if( $t_can_attach_tag ) {
-	echo '<tr class="noprint">';
-	echo '<th class="bug-attach-tags category">', lang_get( 'tag_attach_long' ), '</th>';
-	echo '<td class="bug-attach-tags" colspan="5">';
-	print_tag_attach_form( $t_bug_id );
-	echo '</td></tr>';
-}
-
-# spacer
-echo '<tr class="spacer"><td colspan="6"></td></tr>';
-echo '<tr class="hidden"></tr>';
 
 # Custom Fields
 $t_custom_fields_found = false;
